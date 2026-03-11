@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&R Automation Labs — AI-Powered WhatsApp Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f5f0;--bg2:#efecea;--ink:#0f0e0c;--ink2:#3d3b36;--ink3:#7a776e;--green:#1a7a4a;--green-l:#e8f5ee;--green-m:#b8dfc8;--amber:#d97706;--amber-l:#fef3c7;--card:#ffffff;--border:#e2dfd8;--border2:#ccc9c0;--shadow:0 1px 3px rgba(15,14,12,.06),0 4px 16px rgba(15,14,12,.06);--shadow-lg:0 8px 32px rgba(15,14,12,.1),0 2px 8px rgba(15,14,12,.06)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9997;opacity:.5}
+.cursor{width:10px;height:10px;background:var(--green);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .15s ease;mix-blend-mode:multiply}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--green);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:transform .2s ease;opacity:.5}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(247,245,240,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:var(--ink)}
+.logo-chip{width:32px;height:32px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.65rem;color:var(--bg)}
+.logo-text{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:-.02em}
+.nav-center{display:flex;gap:.25rem}
+.nav-center a{padding:.4rem .9rem;border-radius:50px;font-size:.83rem;font-weight:500;color:var(--ink2);text-decoration:none;transition:all .2s}
+.nav-center a:hover{background:var(--bg2);color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-tag{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--green-l);border:1px solid var(--green-m);padding:.3rem .75rem;border-radius:50px}
+.nav-cta{background:var(--ink);color:var(--bg);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.82rem;padding:.5rem 1.2rem;border-radius:50px;text-decoration:none;transition:all .22s}
+.nav-cta:hover{background:var(--green);transform:translateY(-1px)}
+.hero{min-height:100vh;padding:8rem 5% 5rem;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden}
+.hero-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.mesh-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.22}
+.mb1{width:600px;height:600px;background:radial-gradient(circle,#a8e6c4,#d1fae5);top:-150px;right:-100px}
+.mb2{width:500px;height:500px;background:radial-gradient(circle,#fde68a,#fef3c7);bottom:-100px;left:-150px}
+.mb3{width:300px;height:300px;background:radial-gradient(circle,#fca5a5,#fee2e2);top:40%;left:35%}
+.grid-lines{position:absolute;inset:0;pointer-events:none;opacity:.04}
+.grid-lines svg{width:100%;height:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:.4rem 1rem .4rem .5rem;font-size:.78rem;font-weight:500;color:var(--ink2);margin-bottom:2rem;box-shadow:var(--shadow);animation:fadeUp .7s ease both}
+.eyebrow-dot{width:6px;height:6px;background:#34d399;border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(3rem,6vw,5.2rem);line-height:1.04;letter-spacing:-.035em;text-align:center;max-width:820px;animation:fadeUp .7s .1s ease both}
+.h1-pill{display:inline-block;background:var(--green);color:#fff;padding:.05em .25em;border-radius:.2em;line-height:1.1;position:relative}
+.h1-pill::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent)}
+.h1-amber{color:var(--amber)}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--ink3);line-height:1.75;max-width:520px;text-align:center;margin-top:1.5rem;animation:fadeUp .7s .2s ease both}
+.hero-actions{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s .3s ease both}
+.btn-primary{background:var(--ink);color:var(--bg);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;padding:.9rem 2rem;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .25s;box-shadow:0 4px 16px rgba(15,14,12,.18)}
+.btn-primary:hover{background:var(--green);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,122,74,.3)}
+.btn-outline{background:var(--card);color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:.95rem;padding:.9rem 2rem;border-radius:50px;text-decoration:none;border:1.5px solid var(--border2);transition:all .25s;box-shadow:var(--shadow)}
+.btn-outline:hover{border-color:var(--ink);transform:translateY(-2px)}
+.hero-stats{display:flex;margin-top:3.5rem;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);animation:fadeUp .7s .4s ease both}
+.hstat{padding:1.2rem 2rem;text-align:center;border-right:1px solid var(--border)}
+.hstat:last-child{border-right:none}
+.hstat-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-.03em}
+.hstat-lbl{font-size:.72rem;color:var(--ink3);margin-top:.15rem;font-weight:500}
+.ind-row{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:2rem;animation:fadeUp .7s .5s ease both}
+.ind-chip{background:var(--card);border:1px solid var(--border);border-radius:50px;padding:.35rem .85rem;font-size:.78rem;font-weight:500;color:var(--ink2);box-shadow:var(--shadow);transition:all .2s}
+.ind-chip:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.ai-widget{margin-top:4rem;width:100%;max-width:780px;background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow-lg);overflow:hidden;animation:fadeUp .7s .5s ease both,float 6s 1.5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.widget-top{background:var(--ink);padding:1rem 1.4rem;display:flex;align-items:center;gap:.75rem}
+.widget-dots{display:flex;gap:.4rem}
+.wd{width:10px;height:10px;border-radius:50%}
+.wd1{background:#ff5f57}.wd2{background:#febc2e}.wd3{background:#28c840}
+.widget-title{color:rgba(255,255,255,.6);font-size:.78rem;font-weight:500;margin-left:.5rem}
+.widget-live{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:#34d399;font-weight:600}
+.live-dot{width:6px;height:6px;background:#34d399;border-radius:50%;animation:pulse-dot 1.5s infinite}
+.widget-body{padding:1.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.chat-col{display:flex;flex-direction:column;gap:.5rem}
+.chat-label{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:.3rem}
+.cbub{padding:.6rem .9rem;border-radius:14px;font-size:.8rem;line-height:1.55;max-width:90%}
+.cbub-in{background:var(--bg2);color:var(--ink);border-bottom-left-radius:4px}
+.cbub-out{background:var(--green);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.cbub-ai{background:linear-gradient(135deg,#ecfdf5,#d1fae5);color:var(--green);border:1px solid var(--green-m);margin-left:auto;border-bottom-right-radius:4px;font-weight:500}
+.widget-right{border-left:1px solid var(--border);padding-left:1rem;display:flex;flex-direction:column;gap:.75rem}
+.flow-step{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border-radius:10px;background:var(--bg);border:1px solid var(--border);font-size:.78rem;font-weight:500;color:var(--ink2)}
+.flow-icon{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.fi-g{background:var(--green-l)}.fi-a{background:var(--amber-l)}.fi-r{background:#fff1f2}
+.flow-arrow{color:var(--ink3);font-size:.7rem;padding-left:.7rem}
+section{position:relative;z-index:1}
+.section{padding:6rem 5%}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:var(--green-l);border:1px solid var(--green-m);padding:.3rem .8rem;border-radius:50px;margin-bottom:.9rem}
+.sec-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,3.5vw,2.9rem);line-height:1.1;letter-spacing:-.03em}
+.sec-sub{font-size:1rem;color:var(--ink3);line-height:1.75;margin-top:.7rem;max-width:520px}
+.services{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.8rem;transition:all .3s;position:relative;overflow:hidden}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--green-m)}
+.svc-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem}
+.si-g{background:var(--green-l)}.si-a{background:var(--amber-l)}.si-r{background:#fff1f2}.si-b{background:#eff6ff}.si-p{background:#faf5ff}.si-t{background:#f0fdfa}
+.svc-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;letter-spacing:-.01em}
+.svc-card p{font-size:.86rem;color:var(--ink3);line-height:1.7}
+.svc-tag{display:inline-block;margin-top:.9rem;font-size:.7rem;font-weight:600;color:var(--green);background:var(--green-l);padding:.2rem .6rem;border-radius:50px}
+.industries{background:var(--bg2)}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:3rem}
+.ind-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.6rem;text-align:center;transition:all .3s}
+.ind-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.ind-big-emoji{font-size:2.8rem;margin-bottom:.9rem;display:block}
+.ind-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;margin-bottom:.5rem;letter-spacing:-.01em}
+.ind-card p{font-size:.82rem;color:var(--ink3);line-height:1.65}
+.ind-ready{display:inline-flex;align-items:center;gap:.3rem;margin-top:.8rem;font-size:.7rem;font-weight:700;color:var(--green);background:var(--green-l);border:1px solid var(--green-m);padding:.25rem .65rem;border-radius:50px}
+.bento-section{background:var(--bg)}
+.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.bento-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.8rem;transition:all .3s;overflow:hidden}
+.bento-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.bento-wide{grid-column:span 2}
+.bento-icon{font-size:2rem;margin-bottom:.9rem;display:block}
+.bento-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.5rem;letter-spacing:-.01em}
+.bento-card p{font-size:.86rem;color:var(--ink3);line-height:1.7}
+.btag{display:inline-block;margin-top:.75rem;font-size:.7rem;font-weight:700;background:var(--amber-l);color:var(--amber);border:1px solid #fde68a;padding:.2rem .65rem;border-radius:50px}
+.btag-g{background:var(--green-l);color:var(--green);border-color:var(--green-m)}
+.mini-phone{width:140px;margin:1rem auto 0;background:var(--ink);border-radius:20px;padding:.6rem}
+.mp-screen{background:#0f172a;border-radius:14px;padding:.6rem}
+.mp-msg{font-size:.55rem;color:#94a3b8;line-height:1.5;margin-bottom:.3rem}
+.mp-reply{font-size:.55rem;color:#34d399;background:rgba(52,211,153,.1);border-radius:6px;padding:.25rem .4rem;margin-top:.25rem}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.6rem;text-align:center;box-shadow:var(--shadow);transition:all .3s}
+.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stat-big{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2.5rem;letter-spacing:-.04em;color:var(--ink)}
+.stat-big .ac{color:var(--green)}
+.stat-lbl{font-size:.8rem;color:var(--ink3);margin-top:.3rem;line-height:1.5}
+.how{background:var(--bg2)}
+.how-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3.5rem;position:relative}
+.how-grid::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:1px;background:repeating-linear-gradient(90deg,var(--green-m) 0,var(--green-m) 6px,transparent 6px,transparent 14px)}
+.how-step{text-align:center;padding:0 .5rem}
+.how-circle{width:52px;height:52px;background:var(--card);border:2px solid var(--green-m);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 1rem;position:relative;z-index:1;box-shadow:var(--shadow);transition:all .3s}
+.how-step:hover .how-circle{background:var(--green-l);border-color:var(--green);transform:scale(1.1)}
+.step-badge{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--green);color:#fff;border-radius:50%;font-size:.58rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;display:flex;align-items:center;justify-content:center}
+.how-step h4{font-family:'Bricolage Grotesque',sans-serif;font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:.35rem;letter-spacing:-.01em}
+.how-step p{font-size:.75rem;color:var(--ink3);line-height:1.55}
+.pricing{background:var(--bg)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.price-card{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.price-card.featured{border-color:var(--green);background:linear-gradient(160deg,#f0fdf4,#fff);box-shadow:0 0 0 4px rgba(26,122,74,.07),var(--shadow-lg)}
+.feat-badge{position:absolute;top:1.2rem;right:1.2rem;background:var(--green);color:#fff;font-size:.65rem;font-weight:800;font-family:'Bricolage Grotesque',sans-serif;padding:.25rem .7rem;border-radius:50px}
+.price-name{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:.3rem}
+.price-setup{font-size:.78rem;color:var(--ink3);margin-bottom:.7rem}
+.price-amount{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:2rem;letter-spacing:-.04em}
+.price-amount span{font-size:.85rem;font-weight:400;color:var(--ink3)}
+.price-div{height:1px;background:var(--border);margin:1.2rem 0}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.price-list li{font-size:.85rem;color:var(--ink2);display:flex;gap:.45rem;align-items:flex-start}
+.price-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.price-list li.no{color:var(--ink3);opacity:.5}
+.price-list li.no::before{content:'—';color:var(--ink3)}
+.pbtn{display:block;text-align:center;margin-top:1.5rem;padding:.8rem;border-radius:14px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.9rem;text-decoration:none;transition:all .25s}
+.pb-o{border:1.5px solid var(--border2);color:var(--ink)}
+.pb-o:hover{border-color:var(--green);color:var(--green);background:var(--green-l)}
+.pb-s{background:var(--green);color:#fff;box-shadow:0 4px 14px rgba(26,122,74,.25)}
+.pb-s:hover{background:#15693e;transform:translateY(-1px)}
+.cta-section{background:var(--ink);padding:6rem 5%;position:relative;overflow:hidden}
+.cta-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.12}
+.cb1{width:500px;height:500px;background:#34d399;top:-100px;right:-100px}
+.cb2{width:400px;height:400px;background:#fbbf24;bottom:-100px;left:-100px}
+.cta-inner{max-width:720px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.cta-inner h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.03em;color:#fff;margin-bottom:1rem}
+.cta-inner h2 em{font-style:normal;color:#34d399}
+.cta-inner p{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:2.5rem}
+.cta-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:2rem;display:inline-flex;flex-direction:column;align-items:center;gap:.5rem;min-width:320px}
+.cta-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600}
+.cta-number{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.8rem;color:#fff;letter-spacing:-.03em}
+.wa-btn{margin-top:.5rem;background:#25d366;color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .25s;box-shadow:0 4px 20px rgba(37,211,102,.35)}
+.wa-btn:hover{background:#1db954;transform:translateY(-2px)}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.8rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-left{font-size:.82rem;color:var(--ink3)}
+.foot-left strong{color:var(--ink);font-weight:600}
+.foot-links{display:flex;gap:1.5rem}
+.foot-links a{color:var(--ink3);text-decoration:none;font-size:.82rem;transition:color .2s}
+.foot-links a:hover{color:var(--green)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:1024px){.svc-grid,.price-grid{grid-template-columns:repeat(2,1fr)}.ind-grid,.how-grid{grid-template-columns:repeat(2,1fr)}.how-grid::before{display:none}.bento-grid{grid-template-columns:1fr}.bento-wide{grid-column:auto}.stats-row{grid-template-columns:repeat(2,1fr)}.widget-body{grid-template-columns:1fr}.widget-right{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:.75rem}}
+@media(max-width:640px){.svc-grid,.ind-grid,.price-grid,.stats-row{grid-template-columns:1fr}.hero-stats{flex-direction:column}.hstat{border-right:none;border-bottom:1px solid var(--border)}.hstat:last-child{border-bottom:none}.nav-center{display:none}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="#" class="nav-logo"><div class="logo-chip">R&R</div><span class="logo-text">R&R Automation Labs</span></a>
+  <div class="nav-center"><a href="#services">Services</a><a href="#industries">Industries</a><a href="#pricing">Pricing</a></div>
+  <div class="nav-right">
+    <span class="nav-tag">🤖 AI-Powered</span>
+    <a href="https://wa.me/918178185819?text=Hi%2C%20I%20want%20a%20free%20demo" class="nav-cta" target="_blank">Free Demo →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-mesh"><div class="mesh-blob mb1"></div><div class="mesh-blob mb2"></div><div class="mesh-blob mb3"></div></div>
+  <div class="grid-lines"><svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#0f0e0c" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg></div>
+
+  <div class="hero-eyebrow"><span class="eyebrow-dot"></span> WhatsApp AI Automation · Ghaziabad, UP</div>
+  <h1>Your Business Deserves<br><span class="h1-pill">AI-Powered</span> <span class="h1-amber">Growth</span></h1>
+  <p class="hero-sub">R&R Automation Labs builds intelligent WhatsApp bots & runs digital ads that turn conversations into customers — 24/7, automatically.</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/918178185819?text=Hi%2C%20I%20want%20a%20free%20WhatsApp%20bot%20demo" class="btn-primary" target="_blank">📱 Get Free Demo</a>
+    <a href="#services" class="btn-outline">See How It Works →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">48h</div><div class="hstat-lbl">Go Live In</div></div>
+    <div class="hstat"><div class="hstat-num">24/7</div><div class="hstat-lbl">Bot Active</div></div>
+    <div class="hstat"><div class="hstat-num">4+</div><div class="hstat-lbl">Industries</div></div>
+    <div class="hstat"><div class="hstat-num">₹0</div><div class="hstat-lbl">Per Auto-Reply</div></div>
+  </div>
+  <div class="ind-row">
+    <div class="ind-chip">🍽️ Restaurants</div><div class="ind-chip">🏥 Clinics</div><div class="ind-chip">💇 Salons & Spas</div><div class="ind-chip">🏠 Real Estate</div><div class="ind-chip">🎓 Coaching</div><div class="ind-chip">🛍️ Retail & More</div>
+  </div>
+
+  <div class="ai-widget">
+    <div class="widget-top">
+      <div class="widget-dots"><div class="wd wd1"></div><div class="wd wd2"></div><div class="wd wd3"></div></div>
+      <span class="widget-title">R&R Agency Bot — Live Preview</span>
+      <span class="widget-live"><span class="live-dot"></span>Bot Active</span>
+    </div>
+    <div class="widget-body">
+      <div class="chat-col">
+        <div class="chat-label">Customer Conversation</div>
+        <div class="cbub cbub-in">Hi! I want a WhatsApp bot for my clinic 🏥</div>
+        <div class="cbub cbub-ai">🤖 Welcome to R&R Automation Labs!<br><br>We build AI bots for:<br>🍽️ Restaurants &nbsp;🏥 Clinics<br>💇 Salons &nbsp;🏠 Real Estate<br><br>1️⃣ Services &nbsp;2️⃣ Pricing &nbsp;3️⃣ Free Demo</div>
+        <div class="cbub cbub-in">3 — Free demo please</div>
+        <div class="cbub cbub-ai">🎯 We show your bot LIVE before you pay! Share your time &amp; business type ✅</div>
+        <div class="cbub cbub-in">Tomorrow 3pm, Dr. Mehta, Clinic</div>
+        <div class="cbub cbub-out">✅ Confirmed! Tomorrow 3PM, Dr. Mehta 🙌</div>
+      </div>
+      <div class="widget-right">
+        <div class="chat-label">Automation Flow</div>
+        <div class="flow-step"><div class="flow-icon fi-g">📱</div>Customer sends message</div>
+        <div class="flow-arrow">↓ AI detects intent</div>
+        <div class="flow-step"><div class="flow-icon fi-a">🧠</div>Smart routing engine</div>
+        <div class="flow-arrow">↓ Instant reply</div>
+        <div class="flow-step"><div class="flow-icon fi-g">💬</div>Personalised response</div>
+        <div class="flow-arrow">↓ Lead captured</div>
+        <div class="flow-step"><div class="flow-icon fi-r">✅</div>Booking / Sale made</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section services reveal" id="services">
+  <div class="sec-inner">
+    <span class="sec-tag">⚡ What We Do</span>
+    <h2 class="sec-title">Everything Your Business<br>Needs to Grow Online</h2>
+    <p class="sec-sub">From bot to ads to landing pages — we build the full funnel.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal"><div class="svc-icon si-g">💬</div><h3>WhatsApp Bot Development</h3><p>Custom AI-powered 24/7 bot — handles inquiries, bookings, pricing, menu, location and human handoff automatically.</p><span class="svc-tag">Core Service</span></div>
+      <div class="svc-card reveal d1"><div class="svc-icon si-a">📱</div><h3>Facebook & Instagram Ads</h3><p>Targeted ads designed to send customers directly to your WhatsApp. We handle creatives, targeting and budget.</p><span class="svc-tag">Lead Gen</span></div>
+      <div class="svc-card reveal d2"><div class="svc-icon si-b">🌐</div><h3>Landing Page Design</h3><p>A fast, beautiful business website with your services, photos and a WhatsApp CTA button that converts visitors.</p><span class="svc-tag">Web Presence</span></div>
+      <div class="svc-card reveal"><div class="svc-icon si-r">🔍</div><h3>Google Ads Management</h3><p>Appear at the top when locals search for your service. We manage keywords, bidding and ad copy for max ROI.</p><span class="svc-tag">Search Ads</span></div>
+      <div class="svc-card reveal d1"><div class="svc-icon si-p">🔄</div><h3>WhatsApp Retargeting</h3><p>Re-engage past customers with personalised broadcast messages, offers and reminders every week.</p><span class="svc-tag">Retention</span></div>
+      <div class="svc-card reveal d2"><div class="svc-icon si-t">📊</div><h3>Monthly Reports & Strategy</h3><p>Clear monthly report — leads, bookings, ROI. Plus our growth strategy for next month. Full transparency always.</p><span class="svc-tag">Analytics</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section industries reveal" id="industries">
+  <div class="sec-inner">
+    <span class="sec-tag">🏢 Who We Serve</span>
+    <h2 class="sec-title">Built for Every<br>Business Type</h2>
+    <p class="sec-sub">Ready-made AI bot templates. Your bot goes live in 48 hours — not weeks.</p>
+    <div class="ind-grid">
+      <div class="ind-card reveal"><span class="ind-big-emoji">🍽️</span><h3>Restaurants & Cafes</h3><p>Menu display, table booking, delivery orders, daily offers and feedback — all automated.</p><div class="ind-ready">✓ Ready Template</div></div>
+      <div class="ind-card reveal d1"><span class="ind-big-emoji">🏥</span><h3>Clinics & Doctors</h3><p>Appointment booking, doctor availability, lab test prices and patient follow-ups.</p><div class="ind-ready">✓ Ready Template</div></div>
+      <div class="ind-card reveal d2"><span class="ind-big-emoji">💇</span><h3>Salons & Spas</h3><p>Service menu, slot booking, package pricing and reviews collected automatically.</p><div class="ind-ready">✓ Ready Template</div></div>
+      <div class="ind-card reveal d3"><span class="ind-big-emoji">🏠</span><h3>Real Estate</h3><p>Property listings, budget filtering, site visits and loan enquiries on WhatsApp 24/7.</p><div class="ind-ready">✓ Ready Template</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bento-section reveal">
+  <div class="sec-inner">
+    <span class="sec-tag">🧠 AI Features</span>
+    <h2 class="sec-title">Not Just a Bot.<br>An AI Sales Agent.</h2>
+    <div class="bento-grid">
+      <div class="bento-card bento-wide reveal"><span class="bento-icon">⚡</span><h3>Instant Intent Detection</h3><p>Our AI understands what the customer wants — whether they type "book", "appointment", "slot" or "reserve" — and routes them to the right flow instantly. No rigid menus required.</p><span class="btag btag-g">Smart Routing</span></div>
+      <div class="bento-card reveal d1"><span class="bento-icon">🌙</span><h3>Works While You Sleep</h3><p>Your bot handles every inquiry at 2AM — no staff needed. Customers get instant answers 24/7.</p><span class="btag">Always On</span></div>
+      <div class="bento-card reveal d2"><span class="bento-icon">📲</span><h3>Live on Your WhatsApp</h3><p>Runs on your actual WhatsApp Business number. No apps to download, no links to click.</p><div class="mini-phone"><div class="mp-screen"><div class="mp-msg">Customer: book table for 4?</div><div class="mp-reply">Bot: ✅ Share date & time!</div><div class="mp-msg" style="margin-top:.3rem">Customer: Tonight 8pm</div><div class="mp-reply">Bot: Confirmed! See you 🍽️</div></div></div><span class="btag btag-g" style="margin-top:1rem">Zero Friction</span></div>
+      <div class="bento-card reveal"><span class="bento-icon">🎯</span><h3>Ad to Bot Funnel</h3><p>Our ads send customers straight to WhatsApp — closing the loop from click to booking in minutes.</p><span class="btag">Full Funnel</span></div>
+      <div class="bento-card reveal d1"><span class="bento-icon">🔄</span><h3>Retargeting Broadcasts</h3><p>Send personalised offers to past customers and bring them back every week automatically.</p><span class="btag btag-g">Re-engagement</span></div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card reveal"><div class="stat-big"><span class="ac">3x</span></div><div class="stat-lbl">More bookings in first 30 days</div></div>
+      <div class="stat-card reveal d1"><div class="stat-big"><span class="ac">60%</span></div><div class="stat-lbl">Fewer missed customer messages</div></div>
+      <div class="stat-card reveal d2"><div class="stat-big"><span class="ac">48h</span></div><div class="stat-lbl">From sign-up to bot going live</div></div>
+      <div class="stat-card reveal d3"><div class="stat-big"><span class="ac">₹0</span></div><div class="stat-lbl">Cost per automated reply</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section how reveal">
+  <div class="sec-inner" style="text-align:center">
+    <span class="sec-tag">🔁 Process</span>
+    <h2 class="sec-title">From Ad Click to Loyal Customer</h2>
+    <p class="sec-sub" style="margin:0 auto">We build the entire funnel. Your only job is to deliver great service.</p>
+    <div class="how-grid">
+      <div class="how-step reveal"><div class="how-circle"><span class="step-badge">1</span>📱</div><h4>Ad Campaign</h4><p>Customer sees your FB / Insta / Google ad</p></div>
+      <div class="how-step reveal d1"><div class="how-circle"><span class="step-badge">2</span>🌐</div><h4>Landing Page</h4><p>Lands on your page we designed</p></div>
+      <div class="how-step reveal d2"><div class="how-circle"><span class="step-badge">3</span>💬</div><h4>WhatsApp Bot</h4><p>AI greets them instantly 24/7</p></div>
+      <div class="how-step reveal d3"><div class="how-circle"><span class="step-badge">4</span>✅</div><h4>Booking / Sale</h4><p>Bot captures lead automatically</p></div>
+      <div class="how-step reveal"><div class="how-circle"><span class="step-badge">5</span>🔄</div><h4>Repeat Customer</h4><p>Retargeting brings them back</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing reveal" id="pricing">
+  <div class="sec-inner" style="text-align:center">
+    <span class="sec-tag">💰 Pricing</span>
+    <h2 class="sec-title">Simple, Honest Pricing</h2>
+    <p class="sec-sub" style="margin:0 auto">No hidden charges. No long contracts. Built for Indian SMBs.</p>
+    <div class="price-grid">
+      <div class="price-card reveal"><div class="price-name">Starter</div><div class="price-setup">One-time setup: ₹5,000</div><div class="price-amount">₹2,000 <span>/month</span></div><div class="price-div"></div><ul class="price-list"><li>WhatsApp Bot Setup</li><li>Services + Booking Flow</li><li>Basic Auto-replies</li><li>1 Month Support</li><li class="no">FB / Insta Ads</li><li class="no">Landing Page</li></ul><a href="https://wa.me/918178185819?text=Hi%2C%20Starter%20plan" class="pbtn pb-o" target="_blank">Get Started →</a></div>
+      <div class="price-card featured reveal d1"><div class="feat-badge">⭐ Most Popular</div><div class="price-name">Growth</div><div class="price-setup">One-time setup: ₹10,000</div><div class="price-amount">₹3,500 <span>/month</span></div><div class="price-div"></div><ul class="price-list"><li>Everything in Starter</li><li>FB + Insta Ad Creatives</li><li>Landing Page Design</li><li>Google Business Setup</li><li>Monthly Report</li><li>3 Months Support</li></ul><a href="https://wa.me/918178185819?text=Hi%2C%20Growth%20plan" class="pbtn pb-s" target="_blank">Get Started →</a></div>
+      <div class="price-card reveal d2"><div class="price-name">Agency</div><div class="price-setup">One-time setup: ₹15,000</div><div class="price-amount">₹5,000 <span>/month</span></div><div class="price-div"></div><ul class="price-list"><li>Everything in Growth</li><li>Google Ads Management</li><li>Retargeting Campaigns</li><li>Weekly Strategy Call</li><li>Priority Support</li><li>Unlimited Changes</li></ul><a href="https://wa.me/918178185819?text=Hi%2C%20Agency%20plan" class="pbtn pb-o" target="_blank">Get Started →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section reveal">
+  <div class="cta-blob cb1"></div><div class="cta-blob cb2"></div>
+  <div class="cta-inner">
+    <h2>See Your Bot Live in <em>15 Minutes</em> — Free 🚀</h2>
+    <p>WhatsApp us right now. We'll build a live demo of your business bot and show it to you — before you pay a single rupee.</p>
+    <div class="cta-box">
+      <div class="cta-label">📱 WhatsApp Us Directly</div>
+      <div class="cta-number">+91 81781 85819</div>
+      <a href="https://wa.me/918178185819?text=Hi%2C%20I%20want%20a%20free%20live%20demo%20for%20my%20business" class="wa-btn" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp — Free Demo
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-left">© 2026 <strong>R&R Automation Labs</strong> · Ghaziabad, UP · parth0consultancy@gmail.com</div>
+  <div class="foot-links"><a href="https://www.facebook.com/RandRAutomationLabs/" target="_blank">Facebook</a><a href="mailto:parth0consultancy@gmail.com">Email</a><a href="https://wa.me/918178185819" target="_blank">WhatsApp</a></div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='.2'});el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'})});
+</script>
+</body>
+</html>
